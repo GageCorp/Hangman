@@ -34,78 +34,34 @@
 
     #TODO-3: - print the ASCII art from 'stages' that corresponds to the current number of 'lives' the user has remaining.
 
-#test
-import random
+#Step 5
 
+    #TODO-1: - Update the word list to use the 'word_list' from hangman_words.py
+    #Delete this line: word_list = ["ardvark", "baboon", "camel"]
+
+    #TODO-2: - Import the stages from hangman_art.py and make this error go away.
+
+    #TODO-3: - Import the logo from hangman_art.py and print it at the start of the game.
+
+    #TODO-4: - If the user has entered a letter they've already guessed, print the letter and let them know.
+
+    #TODO-5: - If the letter is not in the chosen_word, print out the letter and let them know it's not in the word.
+
+
+
+import random
+from hangman_art import logo, stages
+import hangman_words
 #Triggers game end when True
 end_of_game = False
 
 #Guess amount
 lives = 6
 
-#game art 
-stages = ['''
-  +---+
-  |   |
-  O   |
- /|\  |
- / \  |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
- /    |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|\  |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========''', '''
-  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========
-''', '''
-  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========
-''']
-
-# Add words here
-word_list = ["ardvark", "baboon", "camel"]
-
 #Randomly selects word 
-chosen_word = random.choice(word_list)
+chosen_word = random.choice(hangman_words.word_list)
+print(chosen_word)
+print(logo)
 
 # Creates Dashes for the length of chosen word
 display = []
@@ -116,6 +72,8 @@ for letter in chosen_word:
 while end_of_game == False:
     print(f"{' '.join(display)}")
     guess = input("Guess a letter.").lower()
+    if guess in display:
+        print (f"You have already guessed {guess}.")
 
     for x, letter in enumerate(chosen_word):
         if letter == guess:
@@ -123,6 +81,7 @@ while end_of_game == False:
 
     if not guess in chosen_word:
         lives -= 1
+        print(f"The letter {guess} is not in the word.")
         if lives == 0:
            
             print("You lose.")
