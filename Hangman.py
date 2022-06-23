@@ -34,7 +34,7 @@
 
     #TODO-3: - print the ASCII art from 'stages' that corresponds to the current number of 'lives' the user has remaining.
 
-
+#test
 import random
 
 #Triggers game end when True
