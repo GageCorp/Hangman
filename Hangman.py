@@ -112,22 +112,28 @@ display = []
 for letter in chosen_word:
     display.append("_")
 
-
-
 # Guessing loop until win or death
 while end_of_game == False:
-    current_stage = stages[lives]
-    print(current_stage)
-
+    print(f"{' '.join(display)}")
     guess = input("Guess a letter.").lower()
 
     for x, letter in enumerate(chosen_word):
         if letter == guess:
             display[x] = guess
-    
+
+    if not guess in chosen_word:
+        lives -= 1
+        if lives == 0:
+           
+            print("You lose.")
+            end_of_game = True
     # win condition
     if not "_" in display:
         print("You win!")
         end_of_game = True
+
+    
+    print(stages[lives])
+
 
 
